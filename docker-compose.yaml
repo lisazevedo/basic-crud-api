@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  crud-api:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    volumes:
+      - db-data:/db
+
+  db:
+    image: busybox
+    volumes:
+      - db-data:/db
+    command: ["tail", "-f", "/dev/null"]
+
+volumes:
+  db-data:
